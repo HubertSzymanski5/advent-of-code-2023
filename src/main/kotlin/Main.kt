@@ -1,10 +1,21 @@
 import day01.Calibration
+import day02.CubeGameValidator
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day01()
+    day02()
+}
+
+fun day02() {
+    val input = inputReader.readFile("day02")
+    val gameValidator = CubeGameValidator()
+    printResults(
+        "02",
+        gameValidator.findPossibleGames(input).sum(),
+        gameValidator.findPowersOfFewestNumberForEachGame(input).sum()
+    )
 }
 
 fun day01() {
