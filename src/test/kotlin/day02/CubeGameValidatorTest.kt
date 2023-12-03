@@ -11,14 +11,14 @@ class CubeGameValidatorTest {
 
     @Test
     fun shouldPassExamplePartI() {
-        val input = inputReader.readFile("day02")
+        val input = inputReader.readFileLines("day02")
         val result = gameValidator.findPossibleGames(input)
         assertEquals(listOf(1, 2, 5), result)
     }
 
     @Test
     fun shouldPassExamplePartII() {
-        val input = inputReader.readFile("day02")
+        val input = inputReader.readFileLines("day02")
         val result = gameValidator.findFewestNumberForEachGame(input)
         val expected = listOf(
             Triple(4, 2, 6),
@@ -32,7 +32,7 @@ class CubeGameValidatorTest {
 
     @Test
     fun shouldCalculatePowers() {
-        val input = inputReader.readFile("day02")
+        val input = inputReader.readFileLines("day02")
         val result = gameValidator.findPowersOfFewestNumberForEachGame(input)
         val expected = listOf(48, 12, 1560, 630, 36)
         assertEquals(expected, result)

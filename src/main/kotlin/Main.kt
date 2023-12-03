@@ -1,15 +1,26 @@
 import day01.Calibration
 import day02.CubeGameValidator
+import day03.EngineSchematicAnalyzer
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day02()
+    day03()
+}
+
+fun day03() {
+    val input = inputReader.readFileMap("day03")
+    val engineSchematicAnalyzer = EngineSchematicAnalyzer()
+    printResults(
+        "day03",
+        engineSchematicAnalyzer.findPartNumbersSum(input),
+        engineSchematicAnalyzer.findGearRatiosSum(input)
+    )
 }
 
 fun day02() {
-    val input = inputReader.readFile("day02")
+    val input = inputReader.readFileLines("day02")
     val gameValidator = CubeGameValidator()
     printResults(
         "02",
@@ -19,7 +30,7 @@ fun day02() {
 }
 
 fun day01() {
-    val input = inputReader.readFile("day01")
+    val input = inputReader.readFileLines("day01")
     val calibration = Calibration()
     printResults(
         "01",

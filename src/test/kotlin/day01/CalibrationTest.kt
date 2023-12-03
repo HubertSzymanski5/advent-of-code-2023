@@ -47,16 +47,14 @@ class CalibrationTest {
 
     @Test
     fun shouldPassExampleInputPartI() {
-        val testInput = inputReader.readFile("day01")
-
+        val testInput = inputReader.readFileLines("day01")
         val result = calibration.findCalibrationValues(testInput)
         assertEquals(listOf(12, 38, 15, 77), result)
     }
 
     @Test
     fun shouldPassExampleInputPartII() {
-        val testInput = inputReader.readFile("day01-part2")
-
+        val testInput = inputReader.readFileLines("day01-part2")
         val result = calibration.findCalibrationValuesWithSpelledDigits(testInput)
         assertEquals(listOf(29, 83, 13, 24, 42, 14, 76), result)
     }
