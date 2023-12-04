@@ -1,12 +1,11 @@
 package day03
 
+import ExampleTest
 import org.junit.jupiter.api.Test
-import utils.InputReader
 import kotlin.test.assertEquals
 
-class EngineSchematicAnalyzerTest {
+class EngineSchematicAnalyzerTest: ExampleTest() {
 
-    private val inputReader = InputReader(true)
     private val engineSchematicAnalyzer = EngineSchematicAnalyzer()
 
     @Test

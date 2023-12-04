@@ -1,12 +1,11 @@
 package day01
 
+import ExampleTest
 import org.junit.jupiter.api.Assertions.assertEquals
-import utils.InputReader
 import kotlin.test.Test
 
-class CalibrationTest {
+class CalibrationTest: ExampleTest() {
 
-    private val inputReader = InputReader(true)
     private val calibration = Calibration()
 
     @Test

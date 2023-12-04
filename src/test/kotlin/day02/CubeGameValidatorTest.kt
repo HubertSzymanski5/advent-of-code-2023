@@ -1,12 +1,11 @@
 package day02
 
+import ExampleTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import utils.InputReader
 
-class CubeGameValidatorTest {
+class CubeGameValidatorTest: ExampleTest() {
 
-    val inputReader = InputReader(true)
     val gameValidator = CubeGameValidator()
 
     @Test

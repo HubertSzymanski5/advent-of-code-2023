@@ -1,12 +1,23 @@
 import day01.Calibration
 import day02.CubeGameValidator
 import day03.EngineSchematicAnalyzer
+import day04.ScratchCardChecker
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day03()
+    day04()
+}
+
+fun day04() {
+    val input = inputReader.readFileLines("day04")
+    val scratchCardChecker = ScratchCardChecker()
+    printResults(
+        "day04",
+        scratchCardChecker.calculateTotalPointsFromCards(input),
+        scratchCardChecker.calculateTotalScratchCards(input)
+    )
 }
 
 fun day03() {
