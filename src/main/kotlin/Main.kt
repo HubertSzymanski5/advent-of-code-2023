@@ -2,12 +2,22 @@ import day01.Calibration
 import day02.CubeGameValidator
 import day03.EngineSchematicAnalyzer
 import day04.ScratchCardChecker
+import day05.AlmanacAnalyzer
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day04()
+    day05()
+}
+
+fun day05() {
+    val input = inputReader.readFileGroups("day05")
+    val almanacAnalyzer = AlmanacAnalyzer.fromGroups(input)
+    printResults(
+        "day05",
+        almanacAnalyzer.getLowestLocationOfGivenSeeds()
+    )
 }
 
 fun day04() {
