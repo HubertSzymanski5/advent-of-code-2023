@@ -15,8 +15,9 @@ fun day05() {
     val input = inputReader.readFileGroups("day05")
     val almanacAnalyzer = AlmanacAnalyzer.fromGroups(input)
     printResults(
-        "day05",
-        almanacAnalyzer.getLowestLocationOfGivenSeeds()
+        "05",
+        almanacAnalyzer.getLowestLocationOfGivenSeeds(),
+        almanacAnalyzer.getLowestLocationOfGivenRangesOfSeeds()
     )
 }
 
@@ -24,7 +25,7 @@ fun day04() {
     val input = inputReader.readFileLines("day04")
     val scratchCardChecker = ScratchCardChecker()
     printResults(
-        "day04",
+        "04",
         scratchCardChecker.calculateTotalPointsFromCards(input),
         scratchCardChecker.calculateTotalScratchCards(input)
     )
@@ -34,7 +35,7 @@ fun day03() {
     val input = inputReader.readFileMap("day03")
     val engineSchematicAnalyzer = EngineSchematicAnalyzer()
     printResults(
-        "day03",
+        "03",
         engineSchematicAnalyzer.findPartNumbersSum(input),
         engineSchematicAnalyzer.findGearRatiosSum(input)
     )
