@@ -4,12 +4,23 @@ import day03.EngineSchematicAnalyzer
 import day04.ScratchCardChecker
 import day05.AlmanacAnalyzer
 import day06.BoatRace
+import day07.CamelCards
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day06()
+    day07()
+}
+
+fun day07() {
+    val input = inputReader.readFileLines("day07")
+    val camelCards = CamelCards.from(input)
+    printResults(
+        "07",
+        camelCards.calculateTotalWinnings(),
+        camelCards.calculateTotalWinningsWithJokers()
+    )
 }
 
 fun day06() {
