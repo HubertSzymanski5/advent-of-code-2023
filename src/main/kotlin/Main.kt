@@ -3,12 +3,23 @@ import day02.CubeGameValidator
 import day03.EngineSchematicAnalyzer
 import day04.ScratchCardChecker
 import day05.AlmanacAnalyzer
+import day06.BoatRace
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day05()
+    day06()
+}
+
+fun day06() {
+    val input = inputReader.readFileLines("day06")
+    val boatRace = BoatRace.from(input)
+    printResults(
+        "06",
+        boatRace.calculateErrorMargin(),
+        boatRace.calculateErrorMarginForOneRace()
+    )
 }
 
 fun day05() {
