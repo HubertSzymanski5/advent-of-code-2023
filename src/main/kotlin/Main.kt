@@ -5,12 +5,23 @@ import day04.ScratchCardChecker
 import day05.AlmanacAnalyzer
 import day06.BoatRace
 import day07.CamelCards
+import day08.DesertNavigator
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day07()
+    day08()
+}
+
+fun day08() {
+    val input = inputReader.readFileGroups("day08")
+    val desertNavi = DesertNavigator.from(input)
+    printResults(
+        "08",
+        desertNavi.findNumberOfSteps(),
+        desertNavi.findNumberOfStepsForGhosts()
+    )
 }
 
 fun day07() {
