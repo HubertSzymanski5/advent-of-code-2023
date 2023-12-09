@@ -6,12 +6,23 @@ import day05.AlmanacAnalyzer
 import day06.BoatRace
 import day07.CamelCards
 import day08.DesertNavigator
+import day09.InstabilitySensor
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day08()
+    day09()
+}
+
+fun day09() {
+    val input = inputReader.readFileLines("day09")
+    val instabilitySensor = InstabilitySensor.from(input)
+    printResults(
+        "09",
+        instabilitySensor.findExtrapolatedValues().sum(),
+        instabilitySensor.findExtrapolatedBackwardsValues().sum()
+    )
 }
 
 fun day08() {
