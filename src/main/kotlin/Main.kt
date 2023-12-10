@@ -7,12 +7,23 @@ import day06.BoatRace
 import day07.CamelCards
 import day08.DesertNavigator
 import day09.InstabilitySensor
+import day10.PipeMaze
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day09()
+    day10()
+}
+
+fun day10() {
+    val input = inputReader.readFileMap("day10")
+    val pipeMaze = PipeMaze(input)
+    printResults(
+        "10",
+        pipeMaze.getStepsAlongTheLoopToAnimal(),
+        pipeMaze.getLoopArea()
+    )
 }
 
 fun day09() {
