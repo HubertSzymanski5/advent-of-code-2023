@@ -8,12 +8,23 @@ import day07.CamelCards
 import day08.DesertNavigator
 import day09.InstabilitySensor
 import day10.PipeMaze
+import day11.CosmicExpansion
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day10()
+    day11()
+}
+
+fun day11() {
+    val input = inputReader.readFileMap("day11")
+    val cosmicExpansion = CosmicExpansion(input)
+    printResults(
+        "11",
+        cosmicExpansion.findDistancesBetweenGalaxies().sum(),
+        cosmicExpansion.findDistancesBetweenGalaxies(1_000_000).sum()
+    )
 }
 
 fun day10() {
