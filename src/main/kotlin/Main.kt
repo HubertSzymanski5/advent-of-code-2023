@@ -9,12 +9,23 @@ import day08.DesertNavigator
 import day09.InstabilitySensor
 import day10.PipeMaze
 import day11.CosmicExpansion
+import day12.HotSprings
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day11()
+    day12()
+}
+
+fun day12() {
+    val input = inputReader.readFileLines("day12")
+    val hotSprings = HotSprings.from(input)
+    printResults(
+        "12",
+        hotSprings.findAllPossibleCombinations(),
+        hotSprings.findAllPossibleCombinationsUnfolded()
+    )
 }
 
 fun day11() {
