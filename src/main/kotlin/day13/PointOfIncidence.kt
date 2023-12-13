@@ -1,62 +1,33 @@
 package day13
 
-class PointOfIncidence(private val grounds: List<Map<Pair<Int, Int>, Char>>) {
+class PointOfIncidence(private val grounds: List<List<String>>) {
 
-    fun findMirrorsNumber() = grounds.sumOf { it.findMirror() }
+    fun findMirrorsNumber(smudges: Int = 0) = grounds.sumOf { it.findMirrorValue(smudges) }
 
-    private fun Map<Pair<Int, Int>, Char>.findMirror(): Int {
-        val maxX = this.keys.maxOf { it.first }
-        val maxY = this.keys.maxOf { it.second }
-
-        val verticalMirror = (0..maxY).map { y ->
-            (0..maxX).map { x ->
-                this[x to y]
-            }.joinToString(separator = "") { it.toString() }
-        }.map { possibleMirror(it) }
-            .reduce { acc, possibleMirrors -> acc intersect possibleMirrors }
-            .singleOrNull()
-        return if (verticalMirror == null) {
-            (0..maxX).map { x ->
-                (0..maxY).map { y ->
-                    this[x to y]
-                }.joinToString(separator = "") { it.toString() }
-            }.map { possibleMirror(it) }
-                .reduce { acc, possibleMirrors -> acc intersect possibleMirrors }
-                .single() * 100
-        } else {
-            verticalMirror
-        }
-
+    private fun List<String>.findMirrorValue(smudges: Int): Int {
+        return 100 * (this.findMirror(smudges) ?: 0) + (this.inverse().findMirror(smudges) ?: 0)
     }
 
-    private fun possibleMirror(input: String): Set<Int> {
-        return (1..<input.length).map {
-            val left = input.substring(0..<it)
-            val right = input.substring(it..<input.length)
-            when {
-                left.length == right.length -> it to (left == right.reversed())
-                left.length < right.length -> it to (left == right.take(left.length).reversed())
-                else -> it to (left.reversed().take(right.length) == right)
-            }
-        }
-            .filter { it.second }
-            .map { it.first }
-            .toSet()
+    private fun List<String>.findMirror(smudges: Int): Int? {
+        return (1..<size).firstOrNull { this.isPossibleMirror(it, smudges) }
     }
+
+    private fun List<String>.isPossibleMirror(num: Int, smudges: Int): Boolean {
+        val radius = num.coerceAtMost(size - num)
+        val leading = this.subList(num - radius, num)
+        val following = this.subList(num, num + radius).reversed()
+        return leading.zip(following)
+            .sumOf { it.first.zip(it.second).count { (a, b) -> a != b } } == smudges
+    }
+
+    private fun List<String>.inverse(): List<String> =
+        List(this.first().length) { i -> this.joinToString("") { it[i].toString() } }
+
 
     companion object {
         fun from(inputs: List<String>): PointOfIncidence {
-            val grounds = inputs.map { readToMap(it) }
-        return PointOfIncidence(grounds)
-        }
-
-        private fun readToMap(input: String): Map<Pair<Int, Int>, Char> {
-            return input.split("\n")
-                .flatMapIndexed { y, line ->
-                    line.mapIndexed { x, char -> (x to y) to char }
-                }
-                .toMap()
+            val grounds = inputs.map { it.split("\n") }
+            return PointOfIncidence(grounds)
         }
     }
-
 }

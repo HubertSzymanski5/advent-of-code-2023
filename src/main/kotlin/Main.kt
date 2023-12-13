@@ -24,7 +24,8 @@ fun day13() {
     val pointOfIncidence = PointOfIncidence.from(input)
     printResults(
         "13",
-        pointOfIncidence.findMirrorsNumber()
+        pointOfIncidence.findMirrorsNumber(),
+        pointOfIncidence.findMirrorsNumber(1)
     )
 }
 
