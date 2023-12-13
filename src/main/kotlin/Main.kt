@@ -10,12 +10,22 @@ import day09.InstabilitySensor
 import day10.PipeMaze
 import day11.CosmicExpansion
 import day12.HotSprings
+import day13.PointOfIncidence
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day12()
+    day13()
+}
+
+fun day13() {
+    val input = inputReader.readFileGroups("day13")
+    val pointOfIncidence = PointOfIncidence.from(input)
+    printResults(
+        "13",
+        pointOfIncidence.findMirrorsNumber()
+    )
 }
 
 fun day12() {
