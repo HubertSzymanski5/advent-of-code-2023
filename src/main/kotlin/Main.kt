@@ -11,12 +11,22 @@ import day10.PipeMaze
 import day11.CosmicExpansion
 import day12.HotSprings
 import day13.PointOfIncidence
+import day14.ParabolicReflectorDish
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day13()
+    day14()
+}
+
+fun day14() {
+    val input = inputReader.readFileLines("day14")
+    val parabolicReflectorDish = ParabolicReflectorDish(input)
+    printResults(
+        "14",
+        parabolicReflectorDish.calculateTotalLoad()
+    )
 }
 
 fun day13() {
