@@ -25,7 +25,8 @@ fun day14() {
     val parabolicReflectorDish = ParabolicReflectorDish(input)
     printResults(
         "14",
-        parabolicReflectorDish.calculateTotalLoad()
+        parabolicReflectorDish.calculateTotalLoad(),
+        parabolicReflectorDish.calculateTotalLoadAfterSpins()
     )
 }
 
