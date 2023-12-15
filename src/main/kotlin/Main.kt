@@ -12,12 +12,22 @@ import day11.CosmicExpansion
 import day12.HotSprings
 import day13.PointOfIncidence
 import day14.ParabolicReflectorDish
+import day15.LensLibrary
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day14()
+    day15()
+}
+
+fun day15() {
+    val input = inputReader.readFileLines("day15").first()
+    val lensLibrary = LensLibrary.of(input)
+    printResults(
+        "15",
+        lensLibrary.hashSum()
+    )
 }
 
 fun day14() {
