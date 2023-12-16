@@ -26,7 +26,8 @@ fun day15() {
     val lensLibrary = LensLibrary.of(input)
     printResults(
         "15",
-        lensLibrary.hashSum()
+        lensLibrary.hashSum(),
+        lensLibrary.calculateFocusingPower()
     )
 }
 
