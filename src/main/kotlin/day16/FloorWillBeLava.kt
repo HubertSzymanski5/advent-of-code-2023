@@ -1,6 +1,6 @@
 package day16
 
-typealias Direction = utils.Commons.Direction
+private typealias Direction = utils.Commons.Direction
 
 class FloorWillBeLava(private val contraption: Map<Pair<Int, Int>, Char>) {
 

@@ -14,12 +14,23 @@ import day13.PointOfIncidence
 import day14.ParabolicReflectorDish
 import day15.LensLibrary
 import day16.FloorWillBeLava
+import day17.ClumsyCrucible
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day16()
+    day17()
+}
+
+fun day17() {
+    val input = inputReader.readFileMap("day17")
+    val clumsyCrucible = ClumsyCrucible.from(input)
+    printResults(
+        "17",
+        clumsyCrucible.findMinimalHeatLoss(),
+        clumsyCrucible.findMinimalHeatLossForUltraCrucibles()
+    )
 }
 
 fun day16() {
