@@ -13,12 +13,23 @@ import day12.HotSprings
 import day13.PointOfIncidence
 import day14.ParabolicReflectorDish
 import day15.LensLibrary
+import day16.FloorWillBeLava
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day15()
+    day16()
+}
+
+fun day16() {
+    val input = inputReader.readFileMap("day16")
+    val floorWillBeLava = FloorWillBeLava(input)
+    printResults(
+        "16",
+        floorWillBeLava.getNumOfEnergizedTiles(),
+        floorWillBeLava.getMaxNumOfEnergizedTiles()
+    )
 }
 
 fun day15() {
@@ -145,9 +156,7 @@ fun day03() {
     val input = inputReader.readFileMap("day03")
     val engineSchematicAnalyzer = EngineSchematicAnalyzer()
     printResults(
-        "03",
-        engineSchematicAnalyzer.findPartNumbersSum(input),
-        engineSchematicAnalyzer.findGearRatiosSum(input)
+        "03", engineSchematicAnalyzer.findPartNumbersSum(input), engineSchematicAnalyzer.findGearRatiosSum(input)
     )
 }
 
