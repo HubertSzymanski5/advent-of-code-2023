@@ -23,6 +23,8 @@ class Commons {
         W(-1 to 0), E(1 to 0),
         SW(-1 to 1), S(0 to 1), SE(1 to 1);
 
+        fun longCord() = cord.first.toLong() to cord.second.toLong()
+
         companion object {
             fun getAll() = Direction.entries.map { it.cord }
             fun getMainFour() = listOf(N, W, E, S).map { it.cord }

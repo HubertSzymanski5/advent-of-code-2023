@@ -15,12 +15,23 @@ import day14.ParabolicReflectorDish
 import day15.LensLibrary
 import day16.FloorWillBeLava
 import day17.ClumsyCrucible
+import day18.LavaDuctLagoon
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day17()
+    day18()
+}
+
+fun day18() {
+    val input = inputReader.readFileLines("day18")
+    val lavaDuctLagoon = LavaDuctLagoon.from(input)
+    printResults(
+        "18",
+        lavaDuctLagoon.calculateVolume(),
+        lavaDuctLagoon.calculateCorrectedVolume()
+    )
 }
 
 fun day17() {
