@@ -16,12 +16,23 @@ import day15.LensLibrary
 import day16.FloorWillBeLava
 import day17.ClumsyCrucible
 import day18.LavaDuctLagoon
+import day19.Aplenty
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day18()
+    day19()
+}
+
+fun day19() {
+    val input = inputReader.readFileGroups("day19")
+    val aplenty = Aplenty.from(input)
+    printResults(
+        "19",
+        aplenty.collectiveRatingOfAccepted(),
+        aplenty.getNumberOfDistinctRatingsAccepted()
+    )
 }
 
 fun day18() {
