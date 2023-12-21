@@ -18,12 +18,23 @@ import day17.ClumsyCrucible
 import day18.LavaDuctLagoon
 import day19.Aplenty
 import day20.PulsePropagation
+import day21.StepCounter
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day20()
+    day21()
+}
+
+fun day21() {
+    val input = inputReader.readFileMap("day21")
+    val stepCounter = StepCounter(input)
+    printResults(
+        "21",
+        stepCounter.possiblePositionsAfterSteps(64),
+        stepCounter.possiblePositionsAfterSteps(26501365)
+    )
 }
 
 fun day20() {
