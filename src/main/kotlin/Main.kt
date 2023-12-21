@@ -17,12 +17,24 @@ import day16.FloorWillBeLava
 import day17.ClumsyCrucible
 import day18.LavaDuctLagoon
 import day19.Aplenty
+import day20.PulsePropagation
 import utils.InputReader
 
 val inputReader = InputReader()
 
 fun main() {
-    day19()
+    day20()
+}
+
+fun day20() {
+    val input = inputReader.readFileLines("day20")
+    val pulsePropagation = PulsePropagation.from(input)
+    printResults(
+        "20",
+        pulsePropagation.getMultiplyOfSignals(),
+        // TODO: it still takes too long
+//        pulsePropagation.getNumberOfPressesToTurnOnRx()
+    )
 }
 
 fun day19() {
