@@ -3,9 +3,9 @@ package day20
 interface Module {
     val name: String
     val inputs: List<String>
-    var lastSignal: Signal?
+    val lastSignals: MutableList<Pair<Signal, Int>>
 
-    fun processSignal(signal: Signal, source: String): Triple<String, List<String>, Signal>?
+    fun processSignal(signal: Signal, source: String, buttonCount: Int): Triple<String, List<String>, Signal>?
     fun reset()
 
     companion object {
@@ -21,63 +21,77 @@ interface Module {
 
 class Broadcast(override val name: String, private val outputs: List<String>) : Module {
     override val inputs: List<String> = emptyList()
-    override var lastSignal: Signal? = null
+    override var lastSignals: MutableList<Pair<Signal, Int>> = mutableListOf()
 
-    override fun processSignal(signal: Signal, source: String): Triple<String, List<String>, Signal> {
-        lastSignal = signal
+    override fun processSignal(signal: Signal, source: String, buttonCount: Int): Triple<String, List<String>, Signal> {
+        lastSignals.add(signal to buttonCount)
         return Triple(name, outputs, signal)
     }
 
-    override fun reset() {} // do nothing
+    override fun reset() {
+        lastSignals = mutableListOf()
+    }
 }
 
 class FlipFlop(override val name: String, private val outputs: List<String>) : Module {
     override val inputs: List<String> = emptyList()
     private var isOn = false
-    override var lastSignal: Signal? = null
+    override var lastSignals: MutableList<Pair<Signal, Int>> = mutableListOf()
 
-    override fun processSignal(signal: Signal, source: String): Triple<String, List<String>, Signal>? {
+    override fun processSignal(
+        signal: Signal,
+        source: String,
+        buttonCount: Int
+    ): Triple<String, List<String>, Signal>? {
         if (signal == Signal.HIGH)
             return null // nothing happens - sends to no one
         isOn = !isOn
         return if (isOn) {
-            lastSignal = Signal.HIGH
+            lastSignals.add(Signal.HIGH to buttonCount)
             Triple(name, outputs, Signal.HIGH)
         } else {
-            lastSignal = Signal.LOW
+            lastSignals.add(Signal.LOW to buttonCount)
             Triple(name, outputs, Signal.LOW)
         }
     }
 
     override fun reset() {
         isOn = false
+        lastSignals = mutableListOf()
     }
 }
 
 class Conjunction(override val name: String, override val inputs: List<String>, private val outputs: List<String>) :
     Module {
     private val memory = inputs.associateWith { Signal.LOW }.toMutableMap()
-    override var lastSignal: Signal? = null
+    override var lastSignals: MutableList<Pair<Signal, Int>> = mutableListOf()
 
-    override fun processSignal(signal: Signal, source: String): Triple<String, List<String>, Signal> {
+    override fun processSignal(signal: Signal, source: String, buttonCount: Int): Triple<String, List<String>, Signal> {
         memory[source] = signal
         if (memory.all { it.value == Signal.HIGH }) {
-            lastSignal = Signal.LOW
+            lastSignals.add(Signal.LOW to buttonCount)
             return Triple(name, outputs, Signal.LOW)
         } else {
-            lastSignal = Signal.HIGH
+            lastSignals.add(Signal.HIGH to buttonCount)
             return Triple(name, outputs, Signal.HIGH)
         }
     }
 
     override fun reset() {
         memory.keys.forEach { memory[it] = Signal.LOW }
+        lastSignals = mutableListOf()
+
     }
 }
 
 class Output(override val name: String) : Module {
-    override var lastSignal: Signal? = null
+    override var lastSignals: MutableList<Pair<Signal, Int>> = mutableListOf()
     override val inputs: List<String> = emptyList()
-    override fun processSignal(signal: Signal, source: String): Triple<String, List<String>, Signal>? = null
+    override fun processSignal(
+        signal: Signal,
+        source: String,
+        buttonCount: Int
+    ): Triple<String, List<String>, Signal>? = null
+
     override fun reset() {} // do nothing
 }

@@ -24,7 +24,7 @@ import utils.InputReader
 val inputReader = InputReader()
 
 fun main() {
-    day21()
+    day20()
 }
 
 fun day21() {
@@ -43,8 +43,7 @@ fun day20() {
     printResults(
         "20",
         pulsePropagation.getMultiplyOfSignals(),
-        // TODO: it still takes too long
-//        pulsePropagation.getNumberOfPressesToTurnOnRx()
+        pulsePropagation.getNumberOfPressesToTurnOnRx()
     )
 }
 

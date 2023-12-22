@@ -9,41 +9,33 @@ class PulsePropagation private constructor(private val modules: Map<String, Modu
     private var lowSignals: Long = 0L
     private val observed: List<Module> by lazy {
         val rxInputModule = modules["tg"] ?: throw IllegalStateException("RX module doesnt exist")
-        rxInputModule.inputs.map { modules[it]!! }
+        rxInputModule.inputs.flatMap { modules[it]!!.inputs.map { modules[it]!! } }
+            .onEach { println("Observing module ${it.name}") }
     }
 
     fun getMultiplyOfSignals(): Long {
-        (1..1000).forEach { pressButton() }
+        (1..1000).forEach { pressButton(it) }
         return highSignals * lowSignals
     }
 
     fun getNumberOfPressesToTurnOnRx(): Long {
         modules.values.forEach { it.reset() }
-        var count = 0L
-        val cycles = mutableMapOf<Module, Long?>()
-        do {
-            count++
-            pressButton()
-            observed
-                .forEach {
-                    if (it.lastSignal == Signal.HIGH) {
-                        cycles[it] = count
-                        println(cycles)
-                    }
-                }
-        } while (cycles.size != observed.size)
-
-        println(cycles)
-
-        return cycles.values.map { it!! }.reduce { acc, num -> Commons.lcm(acc, num) }
+        // hard coded range: I assumed I'd find cycle within that
+        (1..5000).forEach { pressButton(it) }
+        val cyclesLengths = observed.associate {
+            it.name to
+                    it.lastSignals.first { it.first == Signal.LOW }.second
+        }
+        return cyclesLengths.values.map { it.toLong() }.reduce { acc, num -> Commons.lcm(acc, num) }
     }
 
-    private fun pressButton() {
+    private fun pressButton(buttonPressedCount: Int) {
         val toProcessQueue = LinkedList(listOf(Triple("button", listOf("broadcaster"), Signal.LOW)))
         while (toProcessQueue.isNotEmpty()) {
             val (source, modulesToSendTo, signal) = toProcessQueue.poll()
             if (signal == Signal.HIGH) highSignals += modulesToSendTo.size else lowSignals += modulesToSendTo.size
-            val newToProcess = modulesToSendTo.mapNotNull { modules[it]?.processSignal(signal, source) }
+            val newToProcess =
+                modulesToSendTo.mapNotNull { modules[it]?.processSignal(signal, source, buttonPressedCount) }
             toProcessQueue.addAll(newToProcess)
         }
     }
